@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "../core/Layout";
-import { API } from "../../config";
+import { signup } from "../auth/index";
 
 const Signup = () => {
   const [values, setValues] = useState({
@@ -16,24 +16,6 @@ const Signup = () => {
 
   const handleChange = (name) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });
-  };
-
-  const signup = (user) => {
-    // console.log(name, email, password);
-    return fetch(`${API}/signup`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   };
 
   const clickSubmit = (event) => {
@@ -60,7 +42,7 @@ const Signup = () => {
 
   const signUpForm = () => (
     <form>
-      <div className="form-gorup mt-2">
+      <div className="form-group mt-2">
         <label className="text-muted">Name</label>
         <input
           onChange={handleChange("name")}
@@ -73,7 +55,7 @@ const Signup = () => {
         />
       </div>
 
-      <div className="form-gorup mt-2">
+      <div className="form-group mt-2">
         <label className="text-muted">Email</label>
         <input
           onChange={handleChange("email")}
@@ -83,7 +65,7 @@ const Signup = () => {
         />
       </div>
 
-      <div className="form-gorup mt-2">
+      <div className="form-group mt-2">
         <label className="text-muted">Password</label>
         <input
           onChange={handleChange("password")}
