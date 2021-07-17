@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import Layout from "../core/Layout";
-import { API } from "../../config";
+import { signin, authenticate } from "../auth/index";
 
 const Signin = () => {
   const [values, setValues] = useState({
-    email: "",
-    password: "",
+    email: "zul@gmail.com",
+    password: "1234",
     error: "",
     loading: false,
     // loading by default is false
@@ -21,24 +21,6 @@ const Signin = () => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
-  const signin = (user) => {
-    // console.log(name, email, password);
-    return fetch(`${API}/signin`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   const clickSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: false, loading: true });
@@ -49,9 +31,11 @@ const Signin = () => {
       } else {
         // if successful, the input fields will be cleared
         // ... --> Grab all the values in values field
-        setValues({
-          ...values,
-          redirectToReferrer: true,
+        authenticate(data, () => {
+          setValues({
+            ...values,
+            redirectToReferrer: true,
+          });
         });
       }
     });
@@ -108,8 +92,8 @@ const Signin = () => {
   }
   return (
     <Layout
-      title="Signup"
-      description="Signup to SiongSiong Supermarket App"
+      title="Signin"
+      description="Signin to SiongSiong Supermarket App"
       className="container col-md-8 offset-md-2"
     >
       {showLoading()}
