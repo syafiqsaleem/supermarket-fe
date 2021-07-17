@@ -60,3 +60,17 @@ export const signout = (next) => {
       .catch((err) => console.log(err));
   }
 };
+
+export const isAuthenticated = () => {
+  if (typeof window == "undefined") {
+    return false;
+  }
+  if (localStorage.getItem("jwt")) {
+    // When we first saved its in JSON format, so now we are retrieving from the local storage,
+    // use the parse method to return the JSON format
+    return JSON.parse(localStorage.getItem("jwt"));
+    // localStorage.getItem("jwt") --> The jwt has the token as well as user information
+  } else {
+    return false;
+  }
+};
