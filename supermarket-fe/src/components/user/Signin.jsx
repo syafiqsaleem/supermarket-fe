@@ -5,8 +5,8 @@ import { signin, authenticate } from "../auth/index";
 
 const Signin = () => {
   const [values, setValues] = useState({
-    email: "zul@gmail.com",
-    password: "1234",
+    email: "",
+    password: "",
     error: "",
     loading: false,
     // loading by default is false
