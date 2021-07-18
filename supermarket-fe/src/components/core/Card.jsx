@@ -7,6 +7,7 @@ const Card = ({ product }) => {
       <div className="card ">
         <div className="card-header">{product.name}</div>
         <div className="card-body">
+          <p>{product.photo}</p>
           <p>{product.description}</p>
           <p>{product.price}</p>
           <Link to="/">
