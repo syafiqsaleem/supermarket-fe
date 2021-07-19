@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Layout from './Layout'
 import { getCategories } from './ApiController'
+import Checkbox from './Checkbox'
 
 const Shop = () => {
   const [categories, setCategories] = useState([])
@@ -20,6 +21,10 @@ const Shop = () => {
     init()
   }, [])
 
+  const handleFilters = (filters, filterBy) => {
+    console.log(filters, filterBy)
+  }
+
   return (
     <Layout
       title="See all Products"
@@ -27,7 +32,14 @@ const Shop = () => {
       className="container-fluid"
     >
       <div className="row">
-        <div className="col-4"> {JSON.stringify(categories)}</div>
+        <div className="col-4">
+          <ul>
+            <Checkbox
+              categories={categories}
+              handleFilters={(filters) => handleFilters(filters, 'category')}
+            />
+          </ul>
+        </div>
         <div className="col-8">Right Content</div>
       </div>
     </Layout>
