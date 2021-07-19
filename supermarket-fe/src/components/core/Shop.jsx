@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import Layout from './Layout'
-import { getCategories } from './ApiController'
+import { getCategories, getFilteredProducts } from './ApiController'
 import Checkbox from './Checkbox'
+import RadioBox from './RadioBox'
+import { prices } from './PriceFilter'
 
 const Shop = () => {
   const [myFilters, setMyFilters] = useState({
@@ -9,6 +11,10 @@ const Shop = () => {
   })
   const [categories, setCategories] = useState([])
   const [error, setError] = useState(false)
+  const [limit, setLimit] = useState(6)
+  const [skip, setSkip] = useState(0)
+  const [size, setSize] = useState(0)
+  const [filteredResults, setFilteredResults] = useState([])
 
   const init = () => {
     getCategories().then((data) => {
@@ -20,15 +26,46 @@ const Shop = () => {
     })
   }
 
+  const loadFilteredResults = (newFilters) => {
+    // console.log(newFilters);
+    getFilteredProducts(skip, limit, newFilters).then((data) => {
+      if (data.error) {
+        setError(data.error)
+      } else {
+        setFilteredResults(data.data)
+        setSize(data.size)
+        setSkip(0)
+      }
+    })
+  }
+
   useEffect(() => {
     init()
+    loadFilteredResults(skip, limit, myFilters.filters)
   }, [])
 
   const handleFilters = (filters, filterBy) => {
-    // console.log("SHOP", filters, filterBy);
     const newFilters = { ...myFilters }
     newFilters.filters[filterBy] = filters
+
+    if (filterBy === 'price') {
+      let priceValues = handlePrice(filters)
+      newFilters.filters[filterBy] = priceValues
+    }
+    loadFilteredResults(myFilters.filters)
     setMyFilters(newFilters)
+  }
+
+  const handlePrice = (value) => {
+    const data = prices
+    let array = []
+
+    for (let key in data) {
+      if (data[key]._id === parseInt(value)) {
+        array = data[key].array
+      }
+    }
+    return array
   }
 
   return (
@@ -45,8 +82,16 @@ const Shop = () => {
               handleFilters={(filters) => handleFilters(filters, 'category')}
             />
           </ul>
+
+          <h4>Filter by price range</h4>
+          <div>
+            <RadioBox
+              prices={prices}
+              handleFilters={(filters) => handleFilters(filters, 'price')}
+            />
+          </div>
         </div>
-        <div className="col-8">{JSON.stringify(myFilters)}</div>
+        <div className="col-8">{JSON.stringify(filteredResults)}</div>
       </div>
     </Layout>
   )
