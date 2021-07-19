@@ -1,30 +1,36 @@
 import React, { useState, useEffect } from 'react'
 import Layout from './Layout'
+import { read } from './ApiController'
+import Card from './Card'
 
 const Product = (props) => {
   const [product, setProduct] = useState({})
   const [error, setError] = useState(false)
 
   const loadSingleProduct = (productId) => {
-    read().then((data) => {
+    read(productId).then((data) => {
       if (data.error) {
         setError(data.error)
       } else {
         setProduct(data)
+        // fetch related products
       }
     })
   }
 
+  useEffect(() => {
+    const productId = props.match.params.productId
+    loadSingleProduct(productId)
+  }, [props])
+
   return (
     <Layout
-      title="See all Products"
+      title="Welcome to Siong Siong"
       description="Siong Siong Supermart App"
       className="container-fluid"
     >
-      <div className="row">
-        <div className="col-4"> Left sidebar</div>
-        <div className="col-8">Right Content</div>
-      </div>
+      <h2 className="mb-4">Single Product</h2>
+      <div className="row">{JSON.stringify(product)}</div>
     </Layout>
   )
 }
