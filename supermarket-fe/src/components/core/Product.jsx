@@ -9,8 +9,8 @@ const Product = (props) => {
 
   const loadSingleProduct = (productId) => {
     read(productId).then((data) => {
-      if (data.error) {
-        setError(data.error)
+      if (error) {
+        setError(error)
       } else {
         setProduct(data)
         // fetch related products
@@ -25,12 +25,17 @@ const Product = (props) => {
 
   return (
     <Layout
-      title="Welcome to Siong Siong"
-      description="Siong Siong Supermart App"
+      title={product && product.name}
+      description={
+        product && product.description && product.description.substring(0, 100)
+      }
       className="container-fluid"
     >
-      <h2 className="mb-4">Single Product</h2>
-      <div className="row">{JSON.stringify(product)}</div>
+      <div className="row">
+        {product && product.description && (
+          <Card product={product} showViewProductButton={false} />
+        )}
+      </div>
     </Layout>
   )
 }
