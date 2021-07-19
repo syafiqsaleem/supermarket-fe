@@ -1,42 +1,42 @@
-import React, { useState, useEffect } from 'react'
-import Layout from './Layout'
-import { getProducts } from './ApiController'
-import Card from './Card'
+import React, { useState, useEffect } from "react";
+import Layout from "./Layout";
+import { getProducts } from "./ApiController";
+import Card from "./Card";
 
 const Home = () => {
-  const [productsBySold, setProductsBySold] = useState([])
-  const [productsByArrival, setProductsByArrival] = useState([])
-  const [error, setError] = useState(false)
+  const [productsBySold, setProductsBySold] = useState([]);
+  const [productsByArrival, setProductsByArrival] = useState([]);
+  const [error, setError] = useState(false);
 
   const loadProductsBySold = () => {
-    getProducts('sold').then((data) => {
+    getProducts("sold").then((data) => {
       if (error) {
-        setError(error)
+        setError(error);
       } else {
-        setProductsBySold(data)
+        setProductsBySold(data);
       }
-    })
-  }
+    });
+  };
 
   const loadProductsByArrival = () => {
-    getProducts('createdAt').then((data) => {
-      console.log(data)
+    getProducts("createdAt").then((data) => {
+      console.log(data);
       if (error) {
-        setError(error)
+        setError(error);
       } else {
-        setProductsByArrival(data)
+        setProductsByArrival(data);
       }
-    })
-  }
+    });
+  };
 
   useEffect(() => {
-    loadProductsByArrival()
-    loadProductsBySold()
-  }, [])
+    loadProductsByArrival();
+    loadProductsBySold();
+  }, []);
 
   return (
     <Layout
-      title="Siong Siong APP  "
+      title="Siong Siong APP"
       description="App"
       className="container-fluid"
     >
@@ -54,7 +54,7 @@ const Home = () => {
         ))}
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
