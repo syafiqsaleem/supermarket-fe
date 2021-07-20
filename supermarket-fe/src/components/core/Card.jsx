@@ -1,11 +1,18 @@
-import React, { useState } from 'react'
-import { Link, Redirect } from 'react-router-dom'
-import ShowImage from './ShowImage'
-import { addItem } from './cartHelpers'
-import moment from 'moment'
+import React, { useState } from "react";
+import { Link, Redirect } from "react-router-dom";
+import ShowImage from "./ShowImage";
+import { addItem, updateItem, removeItem } from "./cartHelpers";
+import moment from "moment";
 
-const Card = ({ product, showViewProductButton = true }) => {
-  const [redirect, setRedirect] = useState(false)
+const Card = ({
+  product,
+  showViewProductButton = true,
+  showAddToCartButton = true,
+  cartUpdate = false,
+  showRemoveProductButton = false,
+}) => {
+  const [redirect, setRedirect] = useState(false);
+  const [count, setCount] = useState(product.count);
 
   const showViewButton = (showViewProductButton) => {
     return (
@@ -16,27 +23,84 @@ const Card = ({ product, showViewProductButton = true }) => {
           </button>
         </Link>
       )
-    )
-  }
+    );
+  };
   const addToCart = () => {
     addItem(product, () => {
-      setRedirect(true)
-    })
-  }
+      setRedirect(true);
+    });
+  };
+
+  const showAddToCartBtn = (showAddToCartButton) => {
+    return (
+      showAddToCartButton && (
+        <button
+          onClick={addToCart}
+          className="btn btn-outline-warning mt-2 mb-2 card-btn-1  "
+        >
+          Add to cart
+        </button>
+      )
+    );
+  };
+
+  const showRemoveButton = (showRemoveProductButton) => {
+    return (
+      showRemoveProductButton && (
+        <button
+          onClick={() => {
+            removeItem(product._id);
+            // setRun(!run); // run useEffect in parent Cart
+          }}
+          className="btn btn-outline-danger mt-2 mb-2"
+        >
+          Remove Product
+        </button>
+      )
+    );
+  };
 
   const showStock = (stocks) => {
     return stocks > 0 ? (
       <span className="black-8">In Stock </span>
     ) : (
       <span className="black-8">Out of Stock </span>
-    )
-  }
+    );
+  };
+
+  const handleChange = (productId) => (event) => {
+    // setRun(!run); // run useEffect in parent Cart
+    setCount(event.target.value < 1 ? 1 : event.target.value);
+    if (event.target.value >= 1) {
+      updateItem(productId, event.target.value);
+    }
+  };
+
+  const showCartUpdateOptions = (cartUpdate) => {
+    return (
+      cartUpdate && (
+        <div>
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+              <span className="input-group-text">Adjust Quantity</span>
+            </div>
+            <input
+              type="number"
+              className="form-control"
+              value={count}
+              onChange={handleChange(product._id)}
+            />
+          </div>
+        </div>
+      )
+    );
+  };
 
   const shouldRedirect = (redirect) => {
     if (redirect) {
-      return <Redirect to="/cart" />
+      return <Redirect to="/cart" />;
     }
-  }
+  };
 
   return (
     <div className="col-4 mb3">
@@ -56,16 +120,23 @@ const Card = ({ product, showViewProductButton = true }) => {
           {showStock(product.stocks)}
 
           {showViewButton(showViewProductButton)}
-          <button
+
+          {showAddToCartBtn(showAddToCartButton)}
+
+          {showRemoveButton(showRemoveProductButton)}
+
+          {showCartUpdateOptions(cartUpdate)}
+
+          {/* <button
             onClick={addToCart}
             className="btn btn-outline-warning mt-2 mb-2"
           >
             Add to cart
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;
