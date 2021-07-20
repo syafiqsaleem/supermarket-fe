@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Layout from "./Layout";
-import { getProducts } from "./ApiController";
-import Card from "./Card";
+// import Layout from "./Layout";
+// import { getProducts } from "./ApiController";
+// import Card from "./Card";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
 
@@ -14,7 +14,7 @@ const Checkout = ({ products }) => {
 
   const showCheckout = () => {
     return isAuthenticated() ? (
-      <button className="btn btn-success">Checout</button>
+      <button className="btn btn-success">Checkout</button>
     ) : (
       <Link to="/signin">
         <button className="btn btn-primary">Sign in to checkout</button>

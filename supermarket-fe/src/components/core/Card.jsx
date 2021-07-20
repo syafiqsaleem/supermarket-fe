@@ -48,10 +48,7 @@ const Card = ({
     return (
       showRemoveProductButton && (
         <button
-          onClick={() => {
-            removeItem(product._id);
-            // setRun(!run); // run useEffect in parent Cart
-          }}
+          onClick={() => removeItem(product._id)}
           className="btn btn-outline-danger mt-2 mb-2"
         >
           Remove Product
@@ -69,7 +66,6 @@ const Card = ({
   };
 
   const handleChange = (productId) => (event) => {
-    // setRun(!run); // run useEffect in parent Cart
     setCount(event.target.value < 1 ? 1 : event.target.value);
     if (event.target.value >= 1) {
       updateItem(productId, event.target.value);
@@ -126,13 +122,6 @@ const Card = ({
           {showRemoveButton(showRemoveProductButton)}
 
           {showCartUpdateOptions(cartUpdate)}
-
-          {/* <button
-            onClick={addToCart}
-            className="btn btn-outline-warning mt-2 mb-2"
-          >
-            Add to cart
-          </button> */}
         </div>
       </div>
     </div>
