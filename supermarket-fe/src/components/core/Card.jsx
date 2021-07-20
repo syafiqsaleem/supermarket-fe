@@ -1,11 +1,15 @@
-import React, { useState } from 'react'
-import { Link, Redirect } from 'react-router-dom'
-import ShowImage from './ShowImage'
-import { addItem } from './cartHelpers'
-import moment from 'moment'
+import React, { useState } from "react";
+import { Link, Redirect } from "react-router-dom";
+import ShowImage from "./ShowImage";
+import { addItem } from "./cartHelpers";
+import moment from "moment";
 
-const Card = ({ product, showViewProductButton = true }) => {
-  const [redirect, setRedirect] = useState(false)
+const Card = ({
+  product,
+  showViewProductButton = true,
+  showAddToCartButton = true,
+}) => {
+  const [redirect, setRedirect] = useState(false);
 
   const showViewButton = (showViewProductButton) => {
     return (
@@ -16,27 +20,40 @@ const Card = ({ product, showViewProductButton = true }) => {
           </button>
         </Link>
       )
-    )
-  }
+    );
+  };
   const addToCart = () => {
     addItem(product, () => {
-      setRedirect(true)
-    })
-  }
+      setRedirect(true);
+    });
+  };
+
+  const showAddToCartBtn = (showAddToCartButton) => {
+    return (
+      showAddToCartButton && (
+        <button
+          onClick={addToCart}
+          className="btn btn-outline-warning mt-2 mb-2 card-btn-1  "
+        >
+          Add to cart
+        </button>
+      )
+    );
+  };
 
   const showStock = (stocks) => {
     return stocks > 0 ? (
       <span className="black-8">In Stock </span>
     ) : (
       <span className="black-8">Out of Stock </span>
-    )
-  }
+    );
+  };
 
   const shouldRedirect = (redirect) => {
     if (redirect) {
-      return <Redirect to="/cart" />
+      return <Redirect to="/cart" />;
     }
-  }
+  };
 
   return (
     <div className="col-4 mb3">
@@ -56,16 +73,18 @@ const Card = ({ product, showViewProductButton = true }) => {
           {showStock(product.stocks)}
 
           {showViewButton(showViewProductButton)}
-          <button
+
+          {showAddToCartBtn(showAddToCartButton)}
+          {/* <button
             onClick={addToCart}
             className="btn btn-outline-warning mt-2 mb-2"
           >
             Add to cart
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;

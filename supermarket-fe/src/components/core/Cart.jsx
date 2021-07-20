@@ -17,7 +17,7 @@ const Cart = () => {
         <h2>Your cart has {`${items.length}`} items</h2>
         <hr />
         {items.map((product, i) => (
-          <Card key={i} product={product} />
+          <Card key={i} product={product} showAddToCartButton={false} />
         ))}
       </div>
     );
@@ -26,7 +26,7 @@ const Cart = () => {
   const noItemsMessage = () => (
     <h2>
       Your cart is empty. <br />
-      <Link to="/shop">Continue shopping</Link>
+      <Link to="/">Continue shopping</Link>
     </h2>
   );
 
