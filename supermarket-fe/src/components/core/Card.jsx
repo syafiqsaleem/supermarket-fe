@@ -1,10 +1,12 @@
-
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, Redirect } from 'react-router-dom'
 import ShowImage from './ShowImage'
+import { addItem } from './cartHelpers'
 import moment from 'moment'
 
 const Card = ({ product, showViewProductButton = true }) => {
+  const [redirect, setRedirect] = useState(false)
+
   const showViewButton = (showViewProductButton) => {
     return (
       showViewProductButton && (
@@ -16,6 +18,11 @@ const Card = ({ product, showViewProductButton = true }) => {
       )
     )
   }
+  const addToCart = () => {
+    addItem(product, () => {
+      setRedirect(true)
+    })
+  }
 
   const showStock = (stocks) => {
     return stocks > 0 ? (
@@ -24,6 +31,13 @@ const Card = ({ product, showViewProductButton = true }) => {
       <span className="black-8">Out of Stock </span>
     )
   }
+
+  const shouldRedirect = (redirect) => {
+    if (redirect) {
+      return <Redirect to="/cart" />
+    }
+  }
+
   return (
     <div className="col-4 mb3">
       <div className="card ">
@@ -42,13 +56,16 @@ const Card = ({ product, showViewProductButton = true }) => {
           {showStock(product.stocks)}
 
           {showViewButton(showViewProductButton)}
-          <button className="btn btn-outline-warning mt-2 mb-2">
+          <button
+            onClick={addToCart}
+            className="btn btn-outline-warning mt-2 mb-2"
+          >
             Add to cart
           </button>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card

@@ -5,6 +5,7 @@ import Signin from './components/user/Signin'
 import Home from './components/core/Home'
 import Shop from './components/core/Shop'
 import Product from './components/core/Product'
+import Cart from './components/core/Cart'
 
 const Routes = () => {
   return (
