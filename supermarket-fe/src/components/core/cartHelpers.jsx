@@ -55,9 +55,9 @@ export const updateItem = (productId, count) => {
       if (product._id === productId) {
         cart[i].count = count;
       }
-
-      localStorage.setItem("cart", JSON.stringify(cart));
     });
+
+    localStorage.setItem("cart", JSON.stringify(cart));
   }
 };
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Layout from "./Layout";
-import { getCart, removeItem } from "./cartHelpers";
+import { getCart } from "./cartHelpers";
 import Card from "./Card";
 import Checkout from "./Checkout";
 
@@ -10,7 +10,8 @@ const Cart = () => {
 
   useEffect(() => {
     setItems(getCart());
-  }, [items]);
+  }, []);
+  // if items is added in the [] -> removed items update but maximum update warning will be triggered
 
   const showItems = (items) => {
     return (
