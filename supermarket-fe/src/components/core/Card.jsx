@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
-import ShowImage from "./ShowImage";
-import { addItem, updateItem, removeItem } from "./cartHelpers";
-import moment from "moment";
+import React, { useState } from 'react'
+import { Link, Redirect } from 'react-router-dom'
+import ShowImage from './ShowImage'
+import { addItem, updateItem, removeItem } from './cartHelpers'
+import moment from 'moment'
 
 const Card = ({
   product,
@@ -10,9 +10,11 @@ const Card = ({
   showAddToCartButton = true,
   cartUpdate = false,
   showRemoveProductButton = false,
+  setRun = (f) => f,
+  run = undefined,
 }) => {
-  const [redirect, setRedirect] = useState(false);
-  const [count, setCount] = useState(product.count);
+  const [redirect, setRedirect] = useState(false)
+  const [count, setCount] = useState(product.count)
 
   const showViewButton = (showViewProductButton) => {
     return (
@@ -23,13 +25,11 @@ const Card = ({
           </button>
         </Link>
       )
-    );
-  };
+    )
+  }
   const addToCart = () => {
-    addItem(product, () => {
-      setRedirect(true);
-    });
-  };
+    addItem(product, setRedirect(true))
+  }
 
   const showAddToCartBtn = (showAddToCartButton) => {
     return (
@@ -41,36 +41,39 @@ const Card = ({
           Add to cart
         </button>
       )
-    );
-  };
+    )
+  }
 
   const showRemoveButton = (showRemoveProductButton) => {
     return (
       showRemoveProductButton && (
         <button
-          onClick={() => removeItem(product._id)}
+          onClick={() => {
+            removeItem(product._id)
+            setRun(!run) // so can use useEffect in parent Cart
+          }}
           className="btn btn-outline-danger mt-2 mb-2"
         >
           Remove Product
         </button>
       )
-    );
-  };
+    )
+  }
 
   const showStock = (stocks) => {
     return stocks > 0 ? (
       <span className="black-8">In Stock </span>
     ) : (
       <span className="black-8">Out of Stock </span>
-    );
-  };
+    )
+  }
 
   const handleChange = (productId) => (event) => {
-    setCount(event.target.value < 1 ? 1 : event.target.value);
+    setCount(event.target.value < 1 ? 1 : event.target.value)
     if (event.target.value >= 1) {
-      updateItem(productId, event.target.value);
+      updateItem(productId, event.target.value)
     }
-  };
+  }
 
   const showCartUpdateOptions = (cartUpdate) => {
     return (
@@ -89,14 +92,14 @@ const Card = ({
           </div>
         </div>
       )
-    );
-  };
+    )
+  }
 
   const shouldRedirect = (redirect) => {
     if (redirect) {
-      return <Redirect to="/cart" />;
+      return <Redirect to="/cart" />
     }
-  };
+  }
 
   return (
     <div className="col-4 mb3">
@@ -125,7 +128,7 @@ const Card = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card
