@@ -1,67 +1,82 @@
-import { API } from '../../config'
-import queryString from 'query-string'
+import { API } from "../../config";
+import queryString from "query-string";
 
 export const getProducts = (sortBy) => {
   return fetch(`${API}/products?sortBy=${sortBy}&order=desc&limit=6`, {
-    method: 'GET',
+    method: "GET",
   })
     .then((response) => {
-      console.log(response)
-      return response.json()
+      console.log(response);
+      return response.json();
     })
-    .catch((err) => console.log(err))
-}
+    .catch((err) => console.log(err));
+};
 
 export const getCategories = () => {
   return fetch(`${API}/categories`, {
-    method: 'GET',
+    method: "GET",
   })
     .then((response) => {
-      return response.json()
+      return response.json();
     })
-    .catch((err) => console.log(err))
-}
+    .catch((err) => console.log(err));
+};
 
 export const getFilteredProducts = (skip, limit, filters = {}) => {
   const data = {
     limit,
     skip,
     filters,
-  }
+  };
   return fetch(`${API}/products/by/search`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
   })
     .then((response) => {
-      return response.json()
+      return response.json();
     })
     .catch((err) => {
-      console.log(err)
-    })
-}
+      console.log(err);
+    });
+};
 
 export const list = (params) => {
-  const query = queryString.stringify(params)
-  console.log('query', query)
+  const query = queryString.stringify(params);
+  console.log("query", query);
   return fetch(`${API}/products/search?${query}`, {
-    method: 'GET',
+    method: "GET",
   })
     .then((response) => {
-      return response.json()
+      return response.json();
     })
-    .catch((err) => console.log(err))
-}
+    .catch((err) => console.log(err));
+};
 
 export const read = (productId) => {
   return fetch(`${API}/product/${productId}`, {
-    method: 'GET',
+    method: "GET",
   })
     .then((response) => {
-      return response.json()
+      return response.json();
     })
-    .catch((err) => console.log(err))
-}
+    .catch((err) => console.log(err));
+};
+
+export const getBraintreeClientToken = (userId, token) => {
+  return fetch(`${API}/braintree/getToken/${userId}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
