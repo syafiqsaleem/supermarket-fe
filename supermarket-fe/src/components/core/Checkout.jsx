@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react'
 import { isAuthenticated } from '../auth'
 import { Link } from 'react-router-dom'
 
-const Checkout = ({ products }) => {
+const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
   const getTotal = () => {
     return products.reduce((currentValue, nextValue) => {
       return currentValue + nextValue.count * nextValue.price
