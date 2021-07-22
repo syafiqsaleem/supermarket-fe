@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Box, Flex, SimpleGrid, useColorModeValue } from '@chakra-ui/react'
+import { Box, Flex, useColorModeValue, Wrap, Stack } from '@chakra-ui/react'
 import Layout from './Layout'
 import { getCategories, getFilteredProducts } from './ApiController'
 import Card from './Card'
@@ -137,9 +137,14 @@ const Shop = () => {
             >
               <h2>Products</h2>
 
-              {filteredResults.map((product, i) => (
-                <Card key={i} product={product} />
-              ))}
+              <Stack
+                display={{ md: 'grid' }}
+                gridTemplateColumns={{ md: 'repeat(3,1fr)' }}
+              >
+                {filteredResults.map((product, i) => (
+                  <Card key={i} product={product} />
+                ))}
+              </Stack>
 
               <hr />
               <hr />
