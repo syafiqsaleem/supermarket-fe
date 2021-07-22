@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
+import { chakra, Box, Image, Flex, useColorModeValue } from '@chakra-ui/react'
 import ShowImage from './ShowImage'
 import { addItem, updateItem, removeItem } from './cartHelpers'
 import moment from 'moment'
+import { API } from '../../config'
 
 const Card = ({
   product,
@@ -102,32 +104,73 @@ const Card = ({
   }
 
   return (
-    <div className="col-4 mb3">
-      <div className="card ">
-        <div className="card-header">{product.name}</div>
-        <div className="card-body">
-          {shouldRedirect(redirect)}
-          <ShowImage item={product} url="product" />
-          <p className="lead mt-2">{product.description.substring(0, 100)}</p>
-          <p className="black-9">{product.price}</p>
-          <p className="black-9">
-            Category: {product.category && product.category.name}
-          </p>
-          <p className="black-8">
-            Added on {moment(product.createdAt).fromNow()}
-          </p>
-          {showStock(product.stocks)}
+    <Flex
+      bg={useColorModeValue('#F9FAFB', 'gray.600')}
+      p={50}
+      w="full"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Box
+        maxW="sm"
+        mx="auto"
+        bg={useColorModeValue('white', 'gray.800')}
+        shadow="lg"
+        rounded="lg"
+        position="relative"
+      >
+        <Box px={4} py={2}>
+          <chakra.h1
+            color={useColorModeValue('gray.800', 'white')}
+            fontWeight="bold"
+            fontSize="3xl"
+            textTransform="uppercase"
+          >
+            {product.name}
+          </chakra.h1>
+          <chakra.p
+            mt={1}
+            fontSize="sm"
+            color={useColorModeValue('gray.600', 'gray.400')}
+          >
+            {product.description.substring(0, 100)}
+          </chakra.p>
+        </Box>
 
-          {showViewButton(showViewProductButton)}
+        <ShowImage item={product} url="product" />
 
-          {showAddToCartBtn(showAddToCartButton)}
-
-          {showRemoveButton(showRemoveProductButton)}
-
-          {showCartUpdateOptions(cartUpdate)}
-        </div>
-      </div>
-    </div>
+        <Flex
+          alignItems="center"
+          justifyContent="space-between"
+          px={4}
+          py={2}
+          bg="gray.900"
+          roundedBottom="lg"
+        >
+          <chakra.h1 color="white" fontWeight="bold" fontSize="lg">
+            ${product.price}
+          </chakra.h1>
+          <chakra.button
+            px={2}
+            py={1}
+            bg="white"
+            fontSize="xs"
+            color="gray.900"
+            fontWeight="bold"
+            rounded="lg"
+            textTransform="uppercase"
+            _hover={{
+              bg: 'gray.200',
+            }}
+            _focus={{
+              bg: 'gray.400',
+            }}
+          >
+            Add to cart
+          </chakra.button>
+        </Flex>
+      </Box>
+    </Flex>
   )
 }
 
