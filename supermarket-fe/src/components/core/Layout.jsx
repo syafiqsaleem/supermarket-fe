@@ -1,9 +1,9 @@
-import React from "react";
-import Menu from "./Menu";
+import React from 'react'
+import Menu from './Menu'
 
 const Layout = ({
-  title = "Title",
-  description = "Description",
+  title = 'Title',
+  description = 'Description',
   className,
   children,
 }) => (
@@ -15,6 +15,6 @@ const Layout = ({
     </div>
     <div className={className}>{children}</div>
   </div>
-);
+)
 
-export default Layout;
+export default Layout

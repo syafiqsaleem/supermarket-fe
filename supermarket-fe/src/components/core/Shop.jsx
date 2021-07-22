@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Box, Flex, SimpleGrid, useColorModeValue } from '@chakra-ui/react'
 import Layout from './Layout'
 import { getCategories, getFilteredProducts } from './ApiController'
 import Card from './Card'
@@ -100,8 +101,12 @@ const Shop = () => {
       description="Siong Siong Supermart App"
       className="container-fluid"
     >
-      <div className="row">
-        <div className="col-4">
+      <Flex direction={{ base: 'column', md: 'row' }} px={2} py={2} mx="auto">
+        <Box
+          w={{ base: 'full', md: 11 / 12, xl: 9 / 12 }}
+          mx="auto"
+          pr={{ md: 20 }}
+        >
           <h4>Filter by categories</h4>
           <ul>
             <Checkbox
@@ -111,25 +116,39 @@ const Shop = () => {
           </ul>
 
           <h4>Filter by price range</h4>
-          <div>
-            <RadioBox
-              prices={prices}
-              handleFilters={(filters) => handleFilters(filters, 'price')}
-            />
-          </div>
-        </div>
-        <div className="col-8">
-          <h2 className="mb-4">Products</h2>
-          <div className="row">
-            {filteredResults.map((product, i) => (
-              <Card key={i} product={product} />
-            ))}
-          </div>
-          <hr />
-          <hr />
+
+          <RadioBox
+            prices={prices}
+            handleFilters={(filters) => handleFilters(filters, 'price')}
+          />
+        </Box>
+        <Box maxW="7xl" py="20" mx="auto">
+          <Box
+            rounded={['none', 'lg']}
+            shadow={['none', 'md']}
+            bg={useColorModeValue('white', 'gray.800')}
+          >
+            <Flex
+              direction="column"
+              justify="space-between"
+              p="6"
+              borderBottomWidth="1px"
+              borderColor={useColorModeValue('gray.200', 'gray.600')}
+            >
+              <h2>Products</h2>
+
+              {filteredResults.map((product, i) => (
+                <Card key={i} product={product} />
+              ))}
+
+              <hr />
+              <hr />
+            </Flex>
+          </Box>
+
           {loadMoreButton()}
-        </div>
-      </div>
+        </Box>
+      </Flex>
     </Layout>
   )
 }
