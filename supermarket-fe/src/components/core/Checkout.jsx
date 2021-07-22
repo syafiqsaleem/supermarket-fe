@@ -75,7 +75,7 @@ const Checkout = ({ products }) => {
       });
   };
 
-  const showDropIn = () => {
+  const showDropIn = () => (
     // onBlur: Whenever you click anywhere on the page, the function will run and empty the error
     <div onBlur={() => setData({ ...data, error: "" })}>
       {data.clientToken !== null && products.length > 0 ? (
@@ -89,8 +89,8 @@ const Checkout = ({ products }) => {
           </button>
         </div>
       ) : null}
-    </div>;
-  };
+    </div>
+  );
 
   const showError = (error) => (
     <div
