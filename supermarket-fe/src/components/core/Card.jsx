@@ -1,6 +1,12 @@
 import React, { useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
-import { chakra, Box, Image, Flex, useColorModeValue } from '@chakra-ui/react'
+import {
+  chakra,
+  Box,
+  Flex,
+  SimpleGrid,
+  useColorModeValue,
+} from '@chakra-ui/react'
 import ShowImage from './ShowImage'
 import { addItem, updateItem, removeItem } from './cartHelpers'
 import moment from 'moment'
@@ -112,8 +118,9 @@ const Card = ({
       justifyContent="center"
     >
       <Box
-        maxW="sm"
-        mx="auto"
+        maxW="m"
+        w={350}
+        mx="300"
         bg={useColorModeValue('white', 'gray.800')}
         shadow="lg"
         rounded="lg"
