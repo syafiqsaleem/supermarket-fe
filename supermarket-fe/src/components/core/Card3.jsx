@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom'
 import ShowImage from './ShowImage'
 import { addItem, updateItem, removeItem } from './cartHelpers'
 import moment from 'moment'
-import './Card.scss'
+
 const Card = ({
   product,
   showViewProductButton = true,
@@ -102,36 +102,29 @@ const Card = ({
   }
 
   return (
-    <div className="col-lg-3 col-md-4 col-12 col-sm-6">
-      <div className="product-cart-wrap mb-30">
-        <div className="product-img-action-wrap">
-          <div className="product-img product-img-zoom">
-            <ShowImage item={product} url="product" />
-          </div>
+    <div className="col-4 mb3">
+      <div className="card ">
+        <div className="card-header">{product.name}</div>
+        <div className="card-body">
+          {shouldRedirect(redirect)}
+          <ShowImage item={product} url="product" />
+          <p className="lead mt-2">{product.description.substring(0, 100)}</p>
+          <p className="black-9">{product.price}</p>
+          <p className="black-9">
+            Category: {product.category && product.category.name}
+          </p>
+          <p className="black-8">
+            Added on {moment(product.createdAt).fromNow()}
+          </p>
+          {showStock(product.stocks)}
 
-          <div className="product-badges product-badges-position product-badges-mrg">
-            <span className="hot">Hot</span>
-          </div>
-        </div>
-        <div className="product-content-wrap">
-          <div className="product-category">
-            <a href="shop-grid-right.html">Clothing</a>
-          </div>
-          <h2>
-            <a href="shop-product-right.html">{product.name}</a>
-          </h2>
-          <div className="rating-result" title="90%">
-            <span>
-              <span>90%</span>
-            </span>
-          </div>
-          <div className="product-price">
-            <span>$238.85 </span>
-            <span className="old-price">$245.8</span>
-          </div>
-          <div className="product-action-1 show">
-            {showAddToCartBtn(showAddToCartButton)}
-          </div>
+          {showViewButton(showViewProductButton)}
+
+          {showAddToCartBtn(showAddToCartButton)}
+
+          {showRemoveButton(showRemoveProductButton)}
+
+          {showCartUpdateOptions(cartUpdate)}
         </div>
       </div>
     </div>
