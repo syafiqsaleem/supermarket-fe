@@ -10,7 +10,7 @@ import Product from "./components/core/Product";
 import Cart from "./components/core/Cart";
 import PrivateRoute from "./auth/PrivateRoute";
 import AdminRoute from "./auth/AdminRoute";
-import Orders from "./components/admin/ordersAdmin";
+import Orders from "../src/components/admin/OrderAdmin";
 
 const Routes = () => {
   return (
