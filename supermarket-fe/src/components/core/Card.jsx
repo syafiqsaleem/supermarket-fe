@@ -112,14 +112,14 @@ const Card = ({
   return (
     <Flex
       bg={useColorModeValue('#F9FAFB', 'gray.600')}
-      p={50}
+      p={30}
       w="full"
       alignItems="center"
       justifyContent="center"
     >
       <Box
         maxW="m"
-        w={350}
+        w={380}
         mx="300"
         bg={useColorModeValue('white', 'gray.800')}
         shadow="lg"

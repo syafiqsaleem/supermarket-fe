@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { Box, Flex, useColorModeValue, Wrap, Stack } from '@chakra-ui/react'
+import {
+  Box,
+  Flex,
+  useColorModeValue,
+  SimpleGrid,
+  HStack,
+} from '@chakra-ui/react'
+import { useMediaQuery } from '@chakra-ui/media-query'
+
 import Layout from './Layout'
 import { getCategories, getFilteredProducts } from './ApiController'
 import Card from './Card'
@@ -95,17 +103,19 @@ const Shop = () => {
     return array
   }
 
+  const [isNotSmallerScreen] = useMediaQuery('(min-width:600px)')
+
   return (
     <Layout
       title="See all Products"
       description="Siong Siong Supermart App"
       className="container-fluid"
     >
-      <Flex direction={{ base: 'column', md: 'row' }} px={2} py={2} mx="auto">
+      <Flex>
         <Box
           w={{ base: 'full', md: 11 / 12, xl: 9 / 12 }}
           mx="auto"
-          pr={{ md: 20 }}
+          pr={{ md: 1 }}
         >
           <h4>Filter by categories</h4>
           <ul>
@@ -122,37 +132,25 @@ const Shop = () => {
             handleFilters={(filters) => handleFilters(filters, 'price')}
           />
         </Box>
-        <Box maxW="7xl" py="20" mx="auto">
-          <Box
-            rounded={['none', 'lg']}
-            shadow={['none', 'md']}
+        <Box mx="auto">
+          <h2>Products</h2>
+          <SimpleGrid
+            columns={{ base: 1, md: 2, lg: 3 }}
+            spacing={1}
+            mx="auto"
             bg={useColorModeValue('white', 'gray.800')}
+            shadow="xl"
           >
-            <Flex
-              direction="column"
-              justify="space-between"
-              p="6"
-              borderBottomWidth="1px"
-              borderColor={useColorModeValue('gray.200', 'gray.600')}
-            >
-              <h2>Products</h2>
+            {filteredResults.map((product, i) => (
+              <Card key={i} product={product} />
+            ))}
+          </SimpleGrid>
 
-              <Stack
-                display={{ md: 'grid' }}
-                gridTemplateColumns={{ md: 'repeat(3,1fr)' }}
-              >
-                {filteredResults.map((product, i) => (
-                  <Card key={i} product={product} />
-                ))}
-              </Stack>
-
-              <hr />
-              <hr />
-            </Flex>
-          </Box>
-
-          {loadMoreButton()}
+          <hr />
+          <hr />
         </Box>
+
+        {loadMoreButton()}
       </Flex>
     </Layout>
   )
