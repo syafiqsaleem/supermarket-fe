@@ -93,13 +93,12 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
             console.log(response);
             // setData({...data, success: response.success })
 
-            // empty cart
+            // empty cart (This method works before we want to create order function)
             // emptyCart(() => {
             //    console.log('payment success and empty cart')
             // })
 
             // create order
-
             const createOrderData = {
               products: products,
               transaction_id: response.transaction.id,
@@ -153,6 +152,9 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
             options={{
               authorization: data.clientToken,
               paypal: {
+                flow: "vault",
+              },
+              googlepay: {
                 flow: "vault",
               },
             }}
