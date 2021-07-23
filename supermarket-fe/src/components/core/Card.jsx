@@ -115,7 +115,7 @@ const Card = ({
         </div>
         <div className="product-content-wrap">
           <div className="product-category">
-            <a href="shop-grid-right.html">Clothing</a>
+            <span> Category: {product.category && product.category.name}</span>
           </div>
           <h2>
             <a href="shop-product-right.html">{product.name}</a>
@@ -126,12 +126,10 @@ const Card = ({
             </span>
           </div>
           <div className="product-price">
-            <span>$238.85 </span>
-            <span className="old-price">$245.8</span>
+            <span>$ {product.price}</span>
           </div>
-          <div className="product-action-1 show">
-            {showAddToCartBtn(showAddToCartButton)}
-          </div>
+
+          {showAddToCartBtn(showAddToCartButton)}
         </div>
       </div>
     </div>
