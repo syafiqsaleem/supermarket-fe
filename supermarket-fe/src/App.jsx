@@ -1,5 +1,5 @@
 import React from 'react'
-import '../src/main'
+import './'
 
 const App = () => <div>Hello from React</div>
 

@@ -97,8 +97,8 @@ const Shop = () => {
 
   return (
     <Layout
-      title="See all Products"
-      description="Siong Siong Supermart App"
+      title="Shop Categories"
+      description="As one of the cheapest supermarkets in Singapore, we always know what is a good bargain. We offer live, fresh and chilled produce, such as seafood, meat and vegetables. There is also packaged foods, general merchandise, and essential household products."
       className="container-fluid"
     >
       <div className="row">
