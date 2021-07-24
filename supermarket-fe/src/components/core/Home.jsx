@@ -40,11 +40,16 @@ const Home = () => {
       description="As one of the cheapest supermarkets in Singapore, we always know what is a good bargain. We offer live, fresh and chilled produce, such as seafood, meat and vegetables. There is also packaged foods, general merchandise, and essential household products."
       className="container-fluid"
     >
-      <h2 className="mb-4">New Arrivals</h2>
-      <div className="row">
-        {productsByArrival.map((product, i) => (
-          <Card key={i} product={product} />
-        ))}
+      <div className="container">
+        <div className="col-lg-12">
+          <div className="row">
+            <h2 className="mb-4">New Arrivals</h2>
+
+            {productsByArrival.map((product, i) => (
+              <Card key={i} product={product} />
+            ))}
+          </div>
+        </div>
       </div>
 
       <h2 className="mb-4">Best Sellers</h2>
