@@ -11,7 +11,7 @@ import Cart from "./components/core/Cart";
 import PrivateRoute from "./auth/PrivateRoute";
 import AdminRoute from "./auth/AdminRoute";
 import Orders from "../src/components/admin/OrderAdmin";
-import Profile from "./components/user/Profile";
+import Profile from "./components/user/profile";
 
 const Routes = () => {
   return (
