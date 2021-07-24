@@ -49,13 +49,16 @@ const Profile = ({ match }) => {
 
   const clickSubmit = (e) => {
     e.preventDefault();
+    // first param: match.params.userID
+    // second param: token
+    // thrid param : {name, email, password} --> user data(object)
     update(match.params.userId, token, { name, email, password }).then(
       (data) => {
         if (data.error) {
-          // console.log(data.error);
-          alert(data.error);
+          console.log(data.error);
+          //       alert(data.error);
         } else {
-          // set information in localStorage
+          //       // set information in localStorage
           updateUser(data, () => {
             setValues({
               ...values,
@@ -75,7 +78,7 @@ const Profile = ({ match }) => {
     }
   };
 
-  const profileUpdate = (name, email, password) => {
+  const profileUpdate = (name, email, password) => (
     <form>
       <div className="form-group">
         <label className="text-muted">Name</label>
@@ -86,7 +89,6 @@ const Profile = ({ match }) => {
           value={name}
         />
       </div>
-
       <div className="form-group">
         <label className="text-muted">Email</label>
         <input
@@ -96,7 +98,6 @@ const Profile = ({ match }) => {
           value={email}
         />
       </div>
-
       <div className="form-group">
         <label className="text-muted">Password</label>
         <input
@@ -107,11 +108,11 @@ const Profile = ({ match }) => {
         />
       </div>
 
-      <button onClick={clickSubmit} className="btn btn-primary">
+      <button onClick={clickSubmit} className="btn btn-primary mt-3">
         Submit
       </button>
-    </form>;
-  };
+    </form>
+  );
 
   return (
     <Layout
