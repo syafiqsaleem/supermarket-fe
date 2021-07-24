@@ -11,6 +11,7 @@ import Cart from "./components/core/Cart";
 import PrivateRoute from "./auth/PrivateRoute";
 import AdminRoute from "./auth/AdminRoute";
 import Orders from "../src/components/admin/OrderAdmin";
+import Profile from "./components/user/profile";
 
 const Routes = () => {
   return (
@@ -25,6 +26,7 @@ const Routes = () => {
         <Route path="/cart" exact component={Cart} />
         <Route path="/product/:productId" exact component={Product} />
         <AdminRoute path="/admin/orders" exact component={Orders} />
+        <PrivateRoute path="/profile/:userId" exact component={Profile} />
       </Switch>
     </BrowserRouter>
   );
