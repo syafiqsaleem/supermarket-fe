@@ -5,7 +5,6 @@ import Card from './Card'
 import Checkbox from './Checkbox'
 import RadioBox from './RadioBox'
 import { prices } from './PriceFilter'
-import './Shop.scss'
 
 const Shop = () => {
   const [myFilters, setMyFilters] = useState({
@@ -97,33 +96,38 @@ const Shop = () => {
 
   return (
     <Layout
-      title="Shop Categories"
-      description="As one of the cheapest supermarkets in Singapore, we always know what is a good bargain. We offer live, fresh and chilled produce, such as seafood, meat and vegetables. There is also packaged foods, general merchandise, and essential household products."
+      title="See all Products"
+      description="Siong Siong Supermart App"
       className="container-fluid"
     >
       <div className="row">
-        <div class="col-lg-3">
-          <div class="widget-category mb-30">
-            <h5 class="section-title style-1 mb-30 wow fadeIn animated">
-              Category
-            </h5>
-            <ul class="categories">
-              <Checkbox
-                categories={categories}
-                handleFilters={(filters) => handleFilters(filters, 'category')}
-              />
-            </ul>
+        <div className="col-4">
+          <h4>Filter by categories</h4>
+          <ul>
+            <Checkbox
+              categories={categories}
+              handleFilters={(filters) => handleFilters(filters, 'category')}
+            />
+          </ul>
+
+          <h4>Filter by price range</h4>
+          <div>
+            <RadioBox
+              prices={prices}
+              handleFilters={(filters) => handleFilters(filters, 'price')}
+            />
           </div>
         </div>
-
-        <div className="col-lg-9">
-          <h2>Products</h2>
-
+        <div className="col-8">
+          <h2 className="mb-4">Products</h2>
           <div className="row">
             {filteredResults.map((product, i) => (
               <Card key={i} product={product} />
             ))}
           </div>
+          <hr />
+          <hr />
+          {loadMoreButton()}
         </div>
       </div>
     </Layout>

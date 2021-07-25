@@ -3,7 +3,6 @@ import { Link, Redirect } from 'react-router-dom'
 import ShowImage from './ShowImage'
 import { addItem, updateItem, removeItem } from './cartHelpers'
 import moment from 'moment'
-import './Card.scss'
 
 const Card = ({
   product,
@@ -103,29 +102,28 @@ const Card = ({
   }
 
   return (
-    <div className="col-lg-3 col-md-4 col-12 col-sm-6">
-      <div className="product-cart-wrap mb-30">
-        <div className=".product-cart-image-wrap">
-          <div className="product-image">
-            <ShowImage item={product} url="product" />
-          </div>
-        </div>
-        <div className="product-content-wrap">
-          <div className="product-category">
-            <span> Category: {product.category && product.category.name}</span>
-          </div>
-          <h2>{product.name}</h2>
+    <div className="col-4 mb3">
+      <div className="card ">
+        <div className="card-header">{product.name}</div>
+        <div className="card-body">
+          {shouldRedirect(redirect)}
+          <ShowImage item={product} url="product" />
+          <p className="lead mt-2">{product.description.substring(0, 100)}</p>
+          <p className="black-9">{product.price}</p>
+          <p className="black-9">
+            Category: {product.category && product.category.name}
+          </p>
+          <p className="black-8">
+            Added on {moment(product.createdAt).fromNow()}
+          </p>
+          {showStock(product.stocks)}
 
-          <span>
-            <span className="product-stocks">{showStock(product.stocks)}</span>
-          </span>
-
-          <div className="product-price">
-            <span>$ {product.price}</span>
-          </div>
           {showViewButton(showViewProductButton)}
+
           {showAddToCartBtn(showAddToCartButton)}
+
           {showRemoveButton(showRemoveProductButton)}
+
           {showCartUpdateOptions(cartUpdate)}
         </div>
       </div>

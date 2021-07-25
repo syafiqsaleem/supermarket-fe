@@ -1,32 +1,31 @@
-import React, { useState, useEffect } from "react";
-import Layout from "../core/Layout";
-import { isAuthenticated } from "../auth";
-import { Link } from "react-router-dom";
-import { getPurchaseHistory } from "./ApiUser";
-import moment from "moment";
+import React, { useState, useEffect } from 'react'
+import Layout from '../core/Layout'
+import { isAuthenticated } from '../auth'
+import { Link } from 'react-router-dom'
+import { getPurchaseHistory } from './ApiUser'
+import moment from 'moment'
 
 const Dashboard = () => {
-  const [history, setHistory] = useState([]);
+  const [history, setHistory] = useState([])
 
   const {
     user: { _id, name, email, role },
-  } = isAuthenticated();
-
-  const token = isAuthenticated().token;
+  } = isAuthenticated()
+  const token = isAuthenticated().token
 
   const init = (userId, token) => {
     getPurchaseHistory(userId, token).then((data) => {
       if (data.error) {
-        console.log(data.error);
+        console.log(data.error)
       } else {
-        setHistory(data);
+        setHistory(data)
       }
-    });
-  };
+    })
+  }
 
   useEffect(() => {
-    init(_id, token);
-  }, []);
+    init(_id, token)
+  }, [])
 
   const userLinks = () => {
     return (
@@ -45,8 +44,8 @@ const Dashboard = () => {
           </li>
         </ul>
       </div>
-    );
-  };
+    )
+  }
 
   const userInfo = () => {
     return (
@@ -56,12 +55,12 @@ const Dashboard = () => {
           <li className="list-group-item">{name}</li>
           <li className="list-group-item">{email}</li>
           <li className="list-group-item">
-            {role === 1 ? "Admin" : "Registered User"}
+            {role === 1 ? 'Admin' : 'Registered User'}
           </li>
         </ul>
       </div>
-    );
-  };
+    )
+  }
 
   const purchaseHistory = (history) => {
     return (
@@ -80,21 +79,21 @@ const Dashboard = () => {
                         <h6>Product price: ${p.price}</h6>
                         <h6>Purchased date: {moment(p.createdAt).fromNow()}</h6>
                       </div>
-                    );
+                    )
                   })}
                 </div>
-              );
+              )
             })}
           </li>
         </ul>
       </div>
-    );
-  };
+    )
+  }
 
   return (
     <Layout
       title="Dashboard"
-      description={`Welcome ${name}!`}
+      description={`G'day ${name}!`}
       className="container-fluid"
     >
       <div className="row">
@@ -105,7 +104,7 @@ const Dashboard = () => {
         </div>
       </div>
     </Layout>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard

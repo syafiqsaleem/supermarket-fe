@@ -1,20 +1,26 @@
-import React from "react";
-import Menu from "./Menu";
+import React from 'react'
+import Menu from './Menu'
+import './header.scss'
 
 const Layout = ({
-  title = "Title",
-  description = "Description",
+  title = 'Title',
+  description = 'Description',
   className,
   children,
 }) => (
   <div>
     <Menu />
-    <div className="jumbotron">
-      <h2>{title}</h2>
-      <p className="lead">{description}</p>
+    <div className="header-area header-style-1 header-height-2">
+      <div className="container">
+        <div className="header-wrap.header-space-between">
+          <div className="header-middle header-middle-ptb-1 d-none d-lg-block"></div>
+          <h2 className="dashboardtitle">{title}</h2>
+          <p className="dashboardsubtitle">{description}</p>
+        </div>
+      </div>
     </div>
     <div className={className}>{children}</div>
   </div>
-);
+)
 
-export default Layout;
+export default Layout
