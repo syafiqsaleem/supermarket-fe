@@ -105,12 +105,23 @@ const Shop = () => {
         <div class="col-lg-3">
           <div class="widget-category mb-30">
             <h5 class="section-title style-1 mb-30 wow fadeIn animated">
-              Category
+              Filter by categories
             </h5>
             <ul class="categories">
               <Checkbox
                 categories={categories}
                 handleFilters={(filters) => handleFilters(filters, 'category')}
+              />
+            </ul>
+          </div>
+          <div class="widget-category mb-30">
+            <h5 class="section-title style-1 mb-30 wow fadeIn animated">
+              Filter by price range
+            </h5>
+            <ul class="categories">
+              <RadioBox
+                prices={prices}
+                handleFilters={(filters) => handleFilters(filters, 'price')}
               />
             </ul>
           </div>
@@ -124,6 +135,7 @@ const Shop = () => {
               <Card key={i} product={product} />
             ))}
           </div>
+          {loadMoreButton()}
         </div>
       </div>
     </Layout>
