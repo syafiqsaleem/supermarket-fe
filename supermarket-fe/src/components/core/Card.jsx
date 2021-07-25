@@ -104,32 +104,28 @@ const Card = ({
   return (
     <div className="col-lg-3 col-md-4 col-12 col-sm-6">
       <div className="product-cart-wrap mb-30">
-        <div className="product-img-action-wrap">
-          <div className="product-img product-img-zoom">
+        <div className=".product-cart-image-wrap">
+          <div className="product-image">
             <ShowImage item={product} url="product" />
-          </div>
-
-          <div className="product-badges product-badges-position product-badges-mrg">
-            <span className="hot">Hot</span>
           </div>
         </div>
         <div className="product-content-wrap">
           <div className="product-category">
             <span> Category: {product.category && product.category.name}</span>
           </div>
-          <h2>
-            <a href="shop-product-right.html">{product.name}</a>
-          </h2>
-          <div className="rating-result" title="90%">
-            <span>
-              <span>90%</span>
-            </span>
-          </div>
+          <h2>{product.name}</h2>
+
+          <span>
+            <span className="product-stocks">{showStock(product.stocks)}</span>
+          </span>
+
           <div className="product-price">
             <span>$ {product.price}</span>
           </div>
-
+          {showViewButton(showViewProductButton)}
           {showAddToCartBtn(showAddToCartButton)}
+          {showRemoveButton(showRemoveProductButton)}
+          {showCartUpdateOptions(cartUpdate)}
         </div>
       </div>
     </div>
