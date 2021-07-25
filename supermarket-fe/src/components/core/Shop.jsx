@@ -101,31 +101,49 @@ const Shop = () => {
       description="As one of the cheapest supermarkets in Singapore, we always know what is a good bargain. We offer live, fresh and chilled produce, such as seafood, meat and vegetables. There is also packaged foods, general merchandise, and essential household products."
       className="container-fluid"
     >
-      <div className="row">
-        <div class="col-lg-3">
-          <div class="widget-category mb-30">
-            <h5 class="section-title style-1 mb-30 wow fadeIn animated">
-              Category
-            </h5>
-            <ul class="categories">
-              <Checkbox
-                categories={categories}
-                handleFilters={(filters) => handleFilters(filters, 'category')}
-              />
-            </ul>
-          </div>
-        </div>
-
-        <div className="col-lg-9">
-          <h2>Products</h2>
-
+      <section class="mt-50 mb-50">
+        <div className="container">
           <div className="row">
-            {filteredResults.map((product, i) => (
-              <Card key={i} product={product} />
-            ))}
+            <div class="col-lg-3">
+              <div class="widget-category mb-30">
+                <h5 class="section-title style-1 mb-30 wow fadeIn animated">
+                  Filter by categories
+                </h5>
+                <ul class="categories">
+                  <Checkbox
+                    categories={categories}
+                    handleFilters={(filters) =>
+                      handleFilters(filters, 'category')
+                    }
+                  />
+                </ul>
+              </div>
+              <div class="widget-category mb-30">
+                <h5 class="section-title style-1 mb-30 wow fadeIn animated">
+                  Filter by price range
+                </h5>
+                <ul class="categories">
+                  <RadioBox
+                    prices={prices}
+                    handleFilters={(filters) => handleFilters(filters, 'price')}
+                  />
+                </ul>
+              </div>
+            </div>
+
+            <div className="col-lg-9">
+              <h2>Products</h2>
+
+              <div className="row">
+                {filteredResults.map((product, i) => (
+                  <Card key={i} product={product} />
+                ))}
+              </div>
+              {loadMoreButton()}
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </Layout>
   )
 }

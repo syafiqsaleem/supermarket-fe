@@ -45,17 +45,21 @@ const Cart = () => {
       description="Manage your cart items. Add remove checkout or continue shopping."
       className="container-fluid"
     >
-      <div className="row">
-        <div className="col-6">
-          {items.length > 0 ? showItems(items) : noItemsMessage()}
-        </div>
+      <section class="mt-50 mb-50">
+        <div className="container">
+          <div className="row">
+            <div className="col-6">
+              {items.length > 0 ? showItems(items) : noItemsMessage()}
+            </div>
 
-        <div className="col-6">
-          <h2 className="mb-4">Your cart summary</h2>
-          <hr />
-          <Checkout products={items} setRun={setRun} run={run} />
+            <div className="col-6">
+              <h2 className="mb-4">Your cart summary</h2>
+              <hr />
+              <Checkout products={items} setRun={setRun} run={run} />
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
     </Layout>
   )
 }

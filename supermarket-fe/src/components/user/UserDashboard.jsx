@@ -96,13 +96,17 @@ const Dashboard = () => {
       description={`G'day ${name}!`}
       className="container-fluid"
     >
-      <div className="row">
-        <div className="col-3">{userLinks()}</div>
-        <div className="col-9">
-          {userInfo()}
-          {purchaseHistory(history)}
+      <section class="mt-50 mb-50">
+        <div className="container">
+          <div className="row">
+            <div className="col-3">{userLinks()}</div>
+            <div className="col-9">
+              {userInfo()}
+              {purchaseHistory(history)}
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
     </Layout>
   )
 }
