@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from 'react'
-import Layout from './Layout'
-import { read } from './ApiController'
-import Card from './Card'
+import React, { useState, useEffect } from "react";
+import Layout from "./Layout";
+import { read } from "./ApiController";
+import Card from "./Card";
 
 const Product = (props) => {
-  const [product, setProduct] = useState({})
-  const [error, setError] = useState(false)
+  const [product, setProduct] = useState({});
+  const [error, setError] = useState(false);
 
   const loadSingleProduct = (productId) => {
     read(productId).then((data) => {
       if (error) {
-        setError(error)
+        setError(error);
       } else {
-        setProduct(data)
+        setProduct(data);
         // fetch related products
       }
-    })
-  }
+    });
+  };
 
   useEffect(() => {
-    const productId = props.match.params.productId
-    loadSingleProduct(productId)
-  }, [props])
+    const productId = props.match.params.productId;
+    loadSingleProduct(productId);
+  }, [props]);
 
   return (
     <Layout
@@ -37,7 +37,7 @@ const Product = (props) => {
         )}
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default Product
+export default Product;

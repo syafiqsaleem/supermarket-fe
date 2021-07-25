@@ -4,6 +4,7 @@ import ShowImage from './ShowImage'
 import { addItem, updateItem, removeItem } from './cartHelpers'
 import moment from 'moment'
 import './Card.scss'
+
 const Card = ({
   product,
   showViewProductButton = true,
