@@ -1,0 +1,51 @@
+.card {
+  margin-bottom: 24px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  overflow: hidden;
+}
+
+.card:hover {
+  -webkit-transform: translateY(-2px);
+  transform: translateY(-2px);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.form-control,
+.form-select {
+  background-color: #f4f5f9;
+  border: 2px solid #f4f5f9;
+  font-size: 13px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  padding-left: 20px;
+  color: #4f5d77;
+  width: 100%;
+  border-radius: 4px;
+  height: 45px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  background: transparent;
+  border-color: #f4f5f9;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.form-control.select-multiple,
+.form-select.select-multiple {
+  height: unset;
+  border-radius: 4px;
+}
+
+.form-label {
+  font-size: 13px;
+}
