@@ -11,17 +11,17 @@ export const prices = [
   },
   {
     _id: 2,
-    name: '$10 to $19',
+    name: '$10 to $19.99',
     array: [10, 19.99],
   },
   {
     _id: 3,
-    name: '$20 to $29',
+    name: '$20 to $29.99',
     array: [20, 29.99],
   },
   {
     _id: 4,
-    name: '$30 to $39',
+    name: '$30 to $39.99',
     array: [30, 39.99],
   },
   {
