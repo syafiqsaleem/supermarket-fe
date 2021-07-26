@@ -13,7 +13,7 @@ const Shop = () => {
   })
   const [categories, setCategories] = useState([])
   const [error, setError] = useState(false)
-  const [limit, setLimit] = useState(6)
+  const [limit, setLimit] = useState(8)
   const [skip, setSkip] = useState(0)
   const [size, setSize] = useState(0)
   const [filteredResults, setFilteredResults] = useState([])
@@ -138,8 +138,8 @@ const Shop = () => {
                 {filteredResults.map((product, i) => (
                   <Card key={i} product={product} />
                 ))}
+                {loadMoreButton()}
               </div>
-              {loadMoreButton()}
             </div>
           </div>
         </div>
