@@ -28,7 +28,7 @@ const Menu = ({ history }) => (
             style={isActive(history, '/user/dashboard')}
             to="/user/dashboard"
           >
-            Dashboard
+            Profile
           </Link>
         </li>
       )}
@@ -63,7 +63,7 @@ const Menu = ({ history }) => (
         >
           Cart{' '}
           <sup>
-            <small className="cart-badge">{itemTotal()}</small>
+            <span className="cart-dropdown-counter">{itemTotal()}</span>
           </sup>
         </Link>
       </li>
