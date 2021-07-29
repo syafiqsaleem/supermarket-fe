@@ -216,7 +216,7 @@ const AddProduct = () => {
   return (
     <Layout
       title="Add a new product"
-      description={`Hey ${user.name}, ready to add a new product?`}
+      description={`Hey ${user.name}, add a new product here`}
     >
       <section class="mt-50 mb-50">
         <div className="container">
