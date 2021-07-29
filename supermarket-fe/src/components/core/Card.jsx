@@ -38,6 +38,7 @@ const Card = ({
         <button
           onClick={addToCart}
           className="btn btn-outline-warning mt-2 mb-2 card-btn-1  "
+          hidden={product.stocks < 1}
         >
           Add to cart
         </button>
