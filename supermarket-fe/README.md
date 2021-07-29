@@ -11,7 +11,7 @@
 
 ## Screenshots
 
-![Home Page](images/Homepage.png)
+![Home Page](Homepage.png)
 
 
 
