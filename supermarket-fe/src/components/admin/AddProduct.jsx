@@ -80,7 +80,6 @@ const AddProduct = () => {
           description: '',
           brand: '',
           origin: '',
-
           photo: '',
           price: '',
           stocks: '',
