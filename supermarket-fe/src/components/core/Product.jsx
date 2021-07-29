@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Layout from './Layout'
 import { read } from './ApiController'
-import Card from './Card'
+import CardInSingleProduct from './CardInSingleProduct'
 
 const Product = (props) => {
   const [product, setProduct] = useState({})
@@ -33,7 +33,10 @@ const Product = (props) => {
         <div className="container">
           <div className="row">
             {product && product.description && (
-              <Card product={product} showViewProductButton={false} />
+              <CardInSingleProduct
+                product={product}
+                showViewProductButton={false}
+              />
             )}
           </div>
         </div>

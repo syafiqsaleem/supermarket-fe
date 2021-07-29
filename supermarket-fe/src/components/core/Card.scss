@@ -23,6 +23,11 @@
   max-height: 320px;
 }
 
+.product-info {
+  padding: 8px 0;
+  font-size: 12px;
+}
+
 .product-cart-wrap .product-img-action-wrap {
   position: relative;
   background-color: #fff;
@@ -293,6 +298,12 @@
 }
 
 .product-cart-wrap .product-content-wrap .product-price span {
+  font-size: 18px;
+  font-weight: bold;
+  color: #088178;
+}
+
+.product-price-single span {
   font-size: 18px;
   font-weight: bold;
   color: #088178;
