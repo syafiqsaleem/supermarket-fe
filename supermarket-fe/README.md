@@ -4,16 +4,13 @@
 
 ## Links
 
-- [Repo](<https://github.com/syafiqsaleem/supermarket-fe>)
+- [Repo](https://github.com/syafiqsaleem/supermarket-fe)
 
-- [App - Heroku](<https://siongsiongsupermarketapp-fe.herokuapp.com/> "App")
-
+- [App - Heroku](https://siongsiongsupermarketapp-fe.herokuapp.com/ "App")
 
 ## Screenshots
 
-![Home Page](Homepage.png)
-
-
+![Home Page](images/Homepage.png)
 
 ![](/screenshots/2.png)
 
@@ -22,7 +19,6 @@
 ## Available Commands
 
 In the project directory, you can run:
-
 ### `npm start" : "react-scripts start"`,
 
 The app is built using `create-react-app` so this command Runs the app in Development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser. You also need to run the server file as well to completely run the app. The page will reload if you make edits.
