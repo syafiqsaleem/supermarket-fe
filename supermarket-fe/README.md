@@ -12,19 +12,19 @@
 
 
 ## Screenshots
-Home Page
+### Home Page
 ![Home Page](images/Homepage.png)
 
-Shop Categories
+### Shop Categories
 ![Shop Categories](images/Shop-Categories.png)
 
-Shopping Cart
+### Shopping Cart
 ![Shopping Cart](images/Shopping-Cart.png)
 
-Admin
+### Admin
 ![Admin](images/Admin.png)
 
-User
+### User
 ![User](images/User.png)
 
 ## Instructions
