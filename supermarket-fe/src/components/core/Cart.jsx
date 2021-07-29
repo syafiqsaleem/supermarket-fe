@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Layout from './Layout'
 import { getCart } from './cartHelpers'
 import Card from './Card'
+import CardInCheckout from './CardInCheckout'
 import Checkout from './Checkout'
 
 const Cart = () => {
@@ -16,10 +17,10 @@ const Cart = () => {
   const showItems = (items) => {
     return (
       <div>
-        <h2>Your cart has {`${items.length}`} items</h2>
-        <hr />
+        <h2 className="mb-5">Your cart has {`${items.length}`} items</h2>
+
         {items.map((product, i) => (
-          <Card
+          <CardInCheckout
             key={i}
             product={product}
             showAddToCartButton={false}
@@ -53,8 +54,7 @@ const Cart = () => {
             </div>
 
             <div className="col-6">
-              <h2 className="mb-4">Your cart summary</h2>
-              <hr />
+              <h2 className="mb-5">Your cart summary</h2>
               <Checkout products={items} setRun={setRun} run={run} />
             </div>
           </div>

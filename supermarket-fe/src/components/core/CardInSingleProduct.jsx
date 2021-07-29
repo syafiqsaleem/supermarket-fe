@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom'
 import ShowImage from './ShowImage'
 import { addItem, updateItem, removeItem } from './cartHelpers'
 import moment from 'moment'
+import './Card.scss'
 
 const Card = ({
   product,
@@ -37,6 +38,7 @@ const Card = ({
         <button
           onClick={addToCart}
           className="btn btn-outline-warning mt-2 mb-2 card-btn-1  "
+          hidden={product.stocks < 1}
         >
           Add to cart
         </button>
@@ -70,6 +72,7 @@ const Card = ({
 
   const handleChange = (productId) => (event) => {
     setCount(event.target.value < 1 ? 1 : event.target.value)
+
     if (event.target.value >= 1) {
       updateItem(productId, event.target.value)
     }
@@ -102,29 +105,47 @@ const Card = ({
   }
 
   return (
-    <div className="col-4 mb3">
-      <div className="card ">
-        <div className="card-header">{product.name}</div>
-        <div className="card-body">
-          {shouldRedirect(redirect)}
-          <ShowImage item={product} url="product" />
-          <p className="lead mt-2">{product.description.substring(0, 100)}</p>
-          <p className="black-9">{product.price}</p>
-          <p className="black-9">
-            Category: {product.category && product.category.name}
-          </p>
-          <p className="black-8">
-            Added on {moment(product.createdAt).fromNow()}
-          </p>
-          {showStock(product.stocks)}
+    <div className="row">
+      <div className="col-md-7 col-12 col-sm-6">
+        <div className="product-cart-wrap mb-30">
+          <div className=".product-cart-image-wrap">
+            <div className="product-image-single">
+              <ShowImage item={product} url="product" />
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="product-content-wrap">
+            <div className="product-category">
+              <span>
+                {' '}
+                Category: {product.category && product.category.name}
+              </span>
+            </div>
+            <h2>{product.name}</h2>
 
-          {showViewButton(showViewProductButton)}
-
-          {showAddToCartBtn(showAddToCartButton)}
-
-          {showRemoveButton(showRemoveProductButton)}
-
-          {showCartUpdateOptions(cartUpdate)}
+            <span>
+              <span className="product-stocks">
+                {showStock(product.stocks)}
+              </span>
+            </span>
+            <div className="product-info">
+              <span>Brand: {product.brand}</span>
+            </div>
+            <div className="product-info">
+              <span>Origin: {product.origin}</span>
+            </div>
+            <div className="product-info">
+              <span>Product Details: {product.description}</span>
+            </div>
+            <div className="product-price-single">
+              <span>$ {product.price}</span>
+            </div>
+            {showViewButton(showViewProductButton)}
+            {showAddToCartBtn(showAddToCartButton)}
+            {showRemoveButton(showRemoveProductButton)}
+            {showCartUpdateOptions(cartUpdate)}
+          </div>
         </div>
       </div>
     </div>
