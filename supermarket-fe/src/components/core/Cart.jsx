@@ -17,8 +17,8 @@ const Cart = () => {
   const showItems = (items) => {
     return (
       <div>
-        <h2>Your cart has {`${items.length}`} items</h2>
-        <hr />
+        <h2 className="mb-5">Your cart has {`${items.length}`} items</h2>
+
         {items.map((product, i) => (
           <CardInCheckout
             key={i}
@@ -54,8 +54,7 @@ const Cart = () => {
             </div>
 
             <div className="col-6">
-              <h2 className="mb-4">Your cart summary</h2>
-              <hr />
+              <h2 className="mb-5">Your cart summary</h2>
               <Checkout products={items} setRun={setRun} run={run} />
             </div>
           </div>

@@ -138,7 +138,7 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
     <div onBlur={() => setData({ ...data, error: '' })}>
       {data.clientToken !== null && products.length > 0 ? (
         <div>
-          <div className="gorm-group mb-3">
+          <div className="gorm-group mb-5">
             <label className="text-muted">Delivery address:</label>
             <textarea
               onChange={handleAddress}
@@ -160,9 +160,11 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
             }}
             onInstance={(instance) => (data.instance = instance)}
           />
-          <button onClick={buy} className="btn btn-success btn-block">
-            Pay
-          </button>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button onClick={buy} className="btn btn-success btn-lg text-right">
+              Pay
+            </button>
+          </div>
         </div>
       ) : null}
     </div>
@@ -190,7 +192,7 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
 
   return (
     <div>
-      <h2>Total: ${getTotal()}</h2>
+      <h2 className="mb-5">Total: ${getTotal()}</h2>
       {showLoading(data.loading)}
       {showSuccess(data.success)}
       {showError(data.error)}
