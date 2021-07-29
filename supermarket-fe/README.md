@@ -4,64 +4,78 @@
 
 ## Links
 
-- [Repo](https://github.com/syafiqsaleem/supermarket-fe)
+- [Repo - Frontend](<https://github.com/syafiqsaleem/supermarket-fe>)
 
-- [App - Heroku](https://siongsiongsupermarketapp-fe.herokuapp.com/ "App")
+- [Repo - Backend](<https://github.com/syafiqsaleem/supermarket---BE>)
+
+- [App - Heroku](<https://siongsiongsupermarketapp-fe.herokuapp.com/> "App")
+
 
 ## Screenshots
 
 ![Home Page](images/Homepage.png)
 
-![](/screenshots/2.png)
+![Shop Categories](images/Shop-Categories.png)
 
-![](/screenshots/3.png)
+![Shopping Cart](images/Shopping-Cart.png)
 
-## Available Commands
+![Admin](images/Admin.png)
 
-In the project directory, you can run:
-### `npm start" : "react-scripts start"`,
+![User](images/User.png)
 
-The app is built using `create-react-app` so this command Runs the app in Development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser. You also need to run the server file as well to completely run the app. The page will reload if you make edits.
-You will also see any lint errors in the console.
+## Instructions
+1. Register and create an account to use the app.
+2. Login upon completion on registering.
+3. Browse through the products and add to cart.
+4. Complete payment
 
-### `"npm run build": "react-scripts build"`,
+## Available Routes 
 
-Builds the app for production to the `build` folder. It correctly bundles React in production mode and optimizes the build for the best performance. The build is minified and the filenames include the hashes. Your app will be ready to deploy!
+In the project directory, you can access:
 
-### `"npm run test": "react-scripts test"`,
+### `Admin`
 
-Launches the test runner in the interactive watch mode.
+- Create New Category for Products
+- Create New Products
+- View & Edit Orders Status
+- Manage Products
 
-### `"npm run dev": "concurrently "nodemon server" "npm run start"`,
+### `User`
 
-For running the server and app together I am using concurrently this helps a lot in the MERN application as it runs both the server (client and server) concurrently. So you can work on them both together.
+- Items in purchase cart 
+- Update user profile
+- Add to cart products
+- Make payments
 
-### `"serve": "node server"`
+## MVP
+Features:
 
-For running the server file on you can use this command.
-
-### `npm run serve`
+1. View and edit orders status
+2. Manage Products
+3. Stock/Inventory management
+4. Credit card & Paypal payment method 
+5. Add to cart button disappear when stock runs out
 
 ## Built With
 
+- React
 - JavaScript
 - Node
-- NPM
-- Webpack
 - HTML
 - CSS
 
 ## Future Updates
 
-- [ ] Reliable Storage
+- [ ] Delivery Schedule
+- [ ] More payment options (e.g. google pay)
 
 ## Author
 
-**Rohit Jain**
+**Anthony Ong**
+- [Profile](https://github.com/doomvell13)
 
-- [Profile](https://github.com/rohit19060 "Rohit jain")
-- [Email](mailto:rohitjain19060@gmail.com?subject=Hi "Hi!")
-- [Website](https://kingtechnologies.in "Welcome")
+**Mohamed Syafiq**
+- [Profile](https://github.com/syafiqsaleem)
 
 ## 🤝 Support
 
