@@ -1,36 +1,37 @@
 import React, { useState, useEffect } from 'react'
 import Layout from '../core/Layout'
 import { isAuthenticated } from '../auth'
-import { Link } from 'react-router-dom'
-import { createProduct, getCategories } from './AdminApiController'
-import './AddProduct.scss'
+import { Link, Redirect } from 'react-router-dom'
+import { getProduct, getCategories, updateProduct } from './AdminApiController'
 
-const AddProduct = () => {
+const UpdateProduct = ({ match }) => {
   const [values, setValues] = useState({
     name: '',
     description: '',
     price: '',
-    origin: '',
     categories: [],
     category: '',
     shipping: '',
     stocks: '',
     photo: '',
+    brand: '',
+    origin: '',
     loading: false,
-    error: '',
+    error: false,
     createdProduct: '',
     redirectToProfile: false,
     formData: '',
   })
+  const [categories, setCategories] = useState([])
 
   const { user, token } = isAuthenticated()
   const {
     name,
     description,
-    brand,
-    origin,
     price,
-    categories,
+    origin,
+    brand,
+    // categories,
     category,
     shipping,
     stocks,
@@ -41,23 +42,44 @@ const AddProduct = () => {
     formData,
   } = values
 
+  const init = (productId) => {
+    getProduct(productId).then((data) => {
+      if (data.error) {
+        setValues({ ...values, error: data.error })
+      } else {
+        // populate the state
+        setValues({
+          ...values,
+          name: data.name,
+          description: data.description,
+          price: data.price,
+          origin: data.origin,
+          brand: data.brand,
+
+          category: data.category._id,
+          shipping: data.shipping,
+          stocks: data.stocks,
+          formData: new FormData(),
+        })
+        // load categories
+        initCategories()
+      }
+    })
+  }
+
   // load categories and set form data
-  const init = () => {
+  const initCategories = () => {
     getCategories().then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error })
       } else {
-        setValues({
-          ...values,
-          categories: data,
-          formData: new FormData(),
-        })
+        setCategories(data)
       }
     })
   }
 
   useEffect(() => {
-    init()
+    init(match.params.productId)
   }, [])
 
   const handleChange = (name) => (event) => {
@@ -70,34 +92,36 @@ const AddProduct = () => {
     event.preventDefault()
     setValues({ ...values, error: '', loading: true })
 
-    createProduct(user._id, token, formData).then((data) => {
-      if (data.error) {
-        setValues({ ...values, error: data.error })
-      } else {
-        setValues({
-          ...values,
-          name: '',
-          description: '',
-          brand: '',
-          origin: '',
-
-          photo: '',
-          price: '',
-          stocks: '',
-          loading: false,
-          createdProduct: data.name,
-        })
+    updateProduct(match.params.productId, user._id, token, formData).then(
+      (data) => {
+        if (data.error) {
+          setValues({ ...values, error: data.error })
+        } else {
+          setValues({
+            ...values,
+            name: '',
+            description: '',
+            brand: '',
+            origin: '',
+            photo: '',
+            price: '',
+            stocks: '',
+            loading: false,
+            error: false,
+            redirectToProfile: true,
+            createdProduct: data.name,
+          })
+        }
       }
-    })
+    )
   }
 
   const newPostForm = () => (
     <form className="mb-3" onSubmit={clickSubmit}>
-      <label className="text-muted">Upload product image</label>
-      <div className="form-group mb-4">
-        <label className="form-label">
+      <h4>Post Photo</h4>
+      <div className="form-group">
+        <label className="btn btn-secondary">
           <input
-            className="form-control"
             onChange={handleChange('photo')}
             type="file"
             name="photo"
@@ -106,7 +130,7 @@ const AddProduct = () => {
         </label>
       </div>
 
-      <div className="mb-4">
+      <div className="form-group">
         <label className="text-muted">Name</label>
         <input
           onChange={handleChange('name')}
@@ -116,33 +140,16 @@ const AddProduct = () => {
         />
       </div>
 
-      <div className="mb-4">
+      <div className="form-group">
         <label className="text-muted">Description</label>
         <textarea
           onChange={handleChange('description')}
           className="form-control"
-          rows="3"
           value={description}
         />
       </div>
-      <div className="mb-4">
-        <label className="text-muted">Brand</label>
-        <input
-          onChange={handleChange('brand')}
-          className="form-control"
-          value={brand}
-        />
-      </div>
-      <div className="mb-4">
-        <label className="text-muted">Origin</label>
-        <input
-          onChange={handleChange('origin')}
-          className="form-control"
-          value={origin}
-        />
-      </div>
 
-      <div className="form-group mb-4">
+      <div className="form-group">
         <label className="text-muted">Price</label>
         <input
           onChange={handleChange('price')}
@@ -152,9 +159,9 @@ const AddProduct = () => {
         />
       </div>
 
-      <div className="mb-4">
+      <div className="form-group">
         <label className="text-muted">Category</label>
-        <select onChange={handleChange('category')} className="form-select">
+        <select onChange={handleChange('category')} className="form-control">
           <option>Please select</option>
           {categories &&
             categories.map((c, i) => (
@@ -165,17 +172,37 @@ const AddProduct = () => {
         </select>
       </div>
 
-      <div className="mb-4">
+      <div className="form-group">
+        <label className="text-muted">Brand</label>
+        <input
+          onChange={handleChange('brand')}
+          type="text"
+          className="form-control"
+          value={brand}
+        />
+      </div>
+
+      <div className="form-group">
+        <label className="text-muted">Origin</label>
+        <input
+          onChange={handleChange('origin')}
+          type="text"
+          className="form-control"
+          value={origin}
+        />
+      </div>
+
+      <div className="form-group">
         <label className="text-muted">Shipping</label>
-        <select onChange={handleChange('shipping')} className="form-select">
+        <select onChange={handleChange('shipping')} className="form-control">
           <option>Please select</option>
           <option value="0">No</option>
           <option value="1">Yes</option>
         </select>
       </div>
 
-      <div className="mb-4">
-        <label className="text-muted">Stocks Available</label>
+      <div className="form-group">
+        <label className="text-muted">Stocks</label>
         <input
           onChange={handleChange('stocks')}
           type="number"
@@ -184,7 +211,7 @@ const AddProduct = () => {
         />
       </div>
 
-      <button className="btn btn-outline-primary">Create Product</button>
+      <button className="btn btn-outline-primary">Update Product</button>
     </form>
   )
 
@@ -202,7 +229,7 @@ const AddProduct = () => {
       className="alert alert-info"
       style={{ display: createdProduct ? '' : 'none' }}
     >
-      <h2>{`${createdProduct}`} is created!</h2>
+      <h2>{`${createdProduct}`} is updated!</h2>
     </div>
   )
 
@@ -213,29 +240,30 @@ const AddProduct = () => {
       </div>
     )
 
+  const redirectUser = () => {
+    if (redirectToProfile) {
+      if (!error) {
+        return <Redirect to="/" />
+      }
+    }
+  }
+
   return (
     <Layout
       title="Add a new product"
-      description={`Hey ${user.name}, ready to add a new product?`}
+      description={`G'day ${user.name}, ready to add a new product?`}
     >
-      <section class="mt-50 mb-50">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-6">
-              <div className="card mb4">
-                <div className="card-body">
-                  {showLoading()}
-                  {showSuccess()}
-                  {showError()}
-                  {newPostForm()}
-                </div>
-              </div>
-            </div>
-          </div>
+      <div className="row">
+        <div className="col-md-8 offset-md-2">
+          {showLoading()}
+          {showSuccess()}
+          {showError()}
+          {newPostForm()}
+          {redirectUser()}
         </div>
-      </section>
+      </div>
     </Layout>
   )
 }
 
-export default AddProduct
+export default UpdateProduct
