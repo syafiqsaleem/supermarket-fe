@@ -15,7 +15,7 @@ const Layout = ({
         <div className="header-wrap.header-space-between">
           <div className="header-middle header-middle-ptb-1 d-none d-lg-block"></div>
           <h2 className="dashboardtitle">{title}</h2>
-          <p className="dashboardsubtitle">{description}</p>
+          <p className="dashboardsubtitle d-none d-lg-block">{description}</p>
         </div>
       </div>
     </div>

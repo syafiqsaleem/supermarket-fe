@@ -1,3 +1,65 @@
+@media only screen and (max-width: 768px) {
+  .header-area {
+    height: 8vh;
+    background: rgb(4, 59, 133);
+    background: linear-gradient(
+      90deg,
+      rgba(4, 59, 133, 1) 23%,
+      rgba(9, 9, 121, 1) 91%
+    );
+  }
+  .dashboardtitle {
+    font-family: 'Public Sans', sans-serif;
+    font-size: 18px;
+    color: #ffffff;
+    font-weight: 600;
+    letter-spacing: -1px;
+    padding-top: 10px;
+  }
+}
+
+/*phone landscape*/
+@media only screen and (min-width: 480px) and (max-width: 667px) {
+  .header-area {
+    height: 22vh;
+    background: rgb(4, 59, 133);
+    background: linear-gradient(
+      90deg,
+      rgba(4, 59, 133, 1) 23%,
+      rgba(9, 9, 121, 1) 91%
+    );
+  }
+  .dashboardtitle {
+    font-family: 'Public Sans', sans-serif;
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: 600;
+    letter-spacing: -1px;
+    padding-top: 10px;
+  }
+}
+
+/*small phone*/
+@media only screen and (max-width: 415px) {
+  .header-area {
+    height: 5vh;
+    background: rgb(4, 59, 133);
+    background: linear-gradient(
+      90deg,
+      rgba(4, 59, 133, 1) 23%,
+      rgba(9, 9, 121, 1) 91%
+    );
+  }
+  .dashboardtitle {
+    font-family: 'Public Sans', sans-serif;
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: 600;
+    letter-spacing: -1px;
+    padding-top: 5px;
+  }
+}
+
 // Color system
 
 $white: #fff !default;
@@ -1744,7 +1806,6 @@ $escaped-characters: (
   margin-right: 200px !important;
 }
 
-@import 'sass/vendors/normalize.css';
 @import 'sass/abstracts/mixins';
 
 @import '~bootstrap/scss/bootstrap';
