@@ -58,20 +58,35 @@ Features:
 2. Manage Products
 3. Stock/Inventory management
 4. Credit card & Paypal payment method 
-5. Add to cart button disappear when stock runs out
+5. Add to cart button disabled when product is out of stock
+
 
 ## Built With
 
+- Mongo
+- Express
 - React
-- JavaScript
 - Node
-- HTML
-- CSS
+- Express
+- Mongoose
+- Formidable (image upload handling)
+- Moment (date handling)
+- Braintree (payment)
+- Node Sass
+- React Bootstrap
+- JSON web token
 
 ## Future Updates
 
 - [ ] Delivery Schedule
 - [ ] More payment options (e.g. google pay)
+- [ ] Related products under single product view
+- [ ] Cash on delivery option
+- [ ] More filtering options
+- [ ] Product search
+- [ ] Improve user experience for cart (dynamic change when adding to cart)
+- [ ] Improve UI for checkout and payment
+
 
 ## Author
 
