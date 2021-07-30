@@ -64,9 +64,9 @@ const Card = ({
 
   const showStock = (stocks) => {
     return stocks > 0 ? (
-      <span className="black-8">In Stock </span>
+      <span className="black-3">In Stock </span>
     ) : (
-      <span className="black-8">Out of Stock </span>
+      <span className="black-3">Out of Stock </span>
     )
   }
 
@@ -133,18 +133,20 @@ const Card = ({
               <span>Brand: {product.brand}</span>
             </div>
             <div className="product-info">
-              <span>Origin: {product.origin}</span>
+              <span className="black-3">Origin: {product.origin}</span>
             </div>
-            <div className="product-info">
-              <span>Product Details: {product.description}</span>
+            <div className="product-description">
+              <span>{product.description}</span>
             </div>
             <div className="product-price-single">
               <span>$ {product.price}</span>
             </div>
-            {showViewButton(showViewProductButton)}
-            {showAddToCartBtn(showAddToCartButton)}
-            {showRemoveButton(showRemoveProductButton)}
-            {showCartUpdateOptions(cartUpdate)}
+            <ul class="nav justify-content-end">
+              {showViewButton(showViewProductButton)}
+              {showAddToCartBtn(showAddToCartButton)}
+              {showRemoveButton(showRemoveProductButton)}
+              {showCartUpdateOptions(cartUpdate)}
+            </ul>
           </div>
         </div>
       </div>
